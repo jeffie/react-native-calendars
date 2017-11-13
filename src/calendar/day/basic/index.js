@@ -70,19 +70,23 @@ class Day extends Component {
     }
     let dot;
     if (marked.marked) {
-      dotStyle.push(this.style.visibleDot);
-      dot = (<View style={dotStyle}/>);
+      containerStyle.push(this.style.markedContainer)
+      textStyle.push(this.style.markedText);
     }
 
     if (marked.selected) {
-      containerStyle.push(this.style.selected);
-      dotStyle.push(this.style.selectedDot);
-      textStyle.push(this.style.selectedText);
+        containerStyle.push(this.style.selected);
+        dotStyle.push(this.style.selectedDot);
+        textStyle.push(this.style.selectedText);
     } else if (typeof marked.disabled !== 'undefined' ? marked.disabled : this.props.state === 'disabled') {
       textStyle.push(this.style.disabledText);
     } else if (this.props.state === 'today') {
-      textStyle.push(this.style.todayText);
+        if(!marked.marked) {
+        textStyle.push(this.style.todayText);
+        containerStyle.push(this.style.todayContainer)
+      }
     }
+
     return (
       <TouchableOpacity style={containerStyle} onPress={this.onDayPress}>
         <Text style={textStyle}>{String(this.props.children)}</Text>

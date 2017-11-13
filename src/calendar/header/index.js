@@ -79,18 +79,22 @@ class CalendarHeader extends Component {
     if (this.props.showIndicator) {
       indicator = <ActivityIndicator />;
     }
+
+    let formatDay = this.props.month.toString(this.props.monthFormat ? this.props.monthFormat : 'MMMM yyyy')
     return (
       <View>
+        {this.props.hideHeader &&
         <View style={this.style.header}>
           {leftArrow}
           <View style={{ flexDirection: 'row' }}>
             <Text style={this.style.monthText}>
-              {this.props.month.toString(this.props.monthFormat ? this.props.monthFormat : 'MMMM yyyy')}
+              {formatDay}
             </Text>
             {indicator}
           </View>
           {rightArrow}
         </View>
+        }
         {
           !this.props.hideDayNames &&
           <View style={this.style.week}>

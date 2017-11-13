@@ -113,6 +113,10 @@ class Calendar extends Component {
     });
   }
 
+  getCurrentMonth() {
+    return this.state.currentMonth.toString(this.props.monthFormat ? this.props.monthFormat : 'MMMM yyyy')
+  }
+
   pressDay(day) {
     const minDate = parseDate(this.props.minDate);
     const maxDate = parseDate(this.props.maxDate);
@@ -219,6 +223,7 @@ class Calendar extends Component {
     return (
       <View style={[this.style.container, this.props.style]}>
         <CalendarHeader
+          customHeader={this.props.customHeader}
           theme={this.props.theme}
           hideArrows={this.props.hideArrows}
           month={this.state.currentMonth}
